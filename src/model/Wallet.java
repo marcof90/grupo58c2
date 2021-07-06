@@ -51,6 +51,7 @@ public class Wallet {
             return "No se puede superar el limite " + CAPACIDAD_MAXIMA;
         }
         saldo += value; // saldo = saldo + value
+        if(verificarMeta()){System.out.println("Has cumplido la meta!");}
         return "Transacción exitosa, nuevo saldo " + saldo;
     }
     
