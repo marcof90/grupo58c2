@@ -13,6 +13,7 @@ public class Wallet {
         saldo = 0;
         tieneLimite = true;
         meta = 0;
+        //prueba
     }
 
     public int getSaldo(){
