@@ -12,7 +12,7 @@ public class Wallet {
         super(); //Llama el constructor
         balance = 0;
         hasLimit = true;
-        meta = 0;
+        goal = 0;
         // Valores por defecto
     }
     // Getters:
@@ -56,6 +56,7 @@ public class Wallet {
             // Cuando una función llega al return, deja de ejecutarse
         }
         balance += value; // balance = balance + value
+        if(checkGoal()){System.out.println("Has cumplido la meta");}
         return "Transacción exitosa, nuevo saldo = "+balance;
     }
 
