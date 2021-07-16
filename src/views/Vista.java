@@ -7,16 +7,30 @@ public class Vista {
     public static void main(String[] args){
         Wallet wallet1 = new Wallet();
         Wallet wallet2 = new Wallet();
-        System.out.println(wallet1.saveMoney(200000));
+
+        wallet1.setTieneLimite(false);
+        
+        System.out.println(wallet1.saveMoney(500000));
+        
         System.out.println(wallet1.saveMoney(300000));
-        System.out.println(wallet1.breakLimit());
-        System.out.println(wallet1.saveMoney(600000));
+        
+        System.out.println(wallet1.takeMoney(300000));
+        
+        wallet1.setTieneLimite(true);
+        
+        System.out.println(wallet1.saveMoney(100000));
+        System.out.println(wallet1.saveMoney(300000));
+        
+        System.out.println(wallet1.takeMoney(100000));
+        System.out.println(wallet1.takeMoney(300000));
+
+        System.out.println(wallet1.getSaldo());
+        System.out.println(wallet2.getSaldo()); 
+
+        wallet1.transferirDinero(wallet2,50000);
+
         System.out.println(wallet1.getSaldo());
         System.out.println(wallet2.getSaldo());  
-        System.out.println(wallet2.establecerMeta(1100000));          
-        System.out.println(wallet1.establecerMeta(900000));          
-        System.out.println(wallet1.establecerMeta(1900000));          
-        System.out.println(wallet1.saveMoney(1200000));
 
     }
 

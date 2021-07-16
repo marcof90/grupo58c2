@@ -3,18 +3,26 @@ package model;
 public class Wallet {
 
     public static final int CAPACIDAD_MAXIMA = 1000000;
+    public static final int TOPE_TRANSACCION = 200000;
+    public static final double TAZA_TRANSFERENCIA= 0.02;
 
     private int saldo;
     private boolean tieneLimite;
     private int meta;
+    private int topeTransaccion;
 
     public Wallet() {
         super();
         saldo = 0;
         tieneLimite = true;
         meta = 0;
+        topeTransaccion = TOPE_TRANSACCION;
     }
 
+    public int getTopeTransaccion(){
+        return  topeTransaccion;
+
+    }
     public int getSaldo(){
         return saldo;
     }
@@ -50,6 +58,9 @@ public class Wallet {
         if (saldo + value > CAPACIDAD_MAXIMA && tieneLimite) {
             return "No se puede superar el limite " + CAPACIDAD_MAXIMA;
         }
+        if (value>getTopeTransaccion() && tieneLimite){
+            return "El valor supera el tope de transaccion  "+getTopeTransaccion();
+        }
         saldo += value; // saldo = saldo + value
         if(verificarMeta()){System.out.println("Has cumplido la meta!");}
         return "Transacción exitosa, nuevo saldo " + saldo;
@@ -57,6 +68,9 @@ public class Wallet {
     
     public String takeMoney(int value){
         if(saldo >= value){
+            if (tieneLimite && value > getTopeTransaccion()){
+                return "El valor supera el tope de transaccion "+getTopeTransaccion();
+            }
             saldo -= value;
             return "Transacción exitosa, nuevo saldo " + saldo;
         }
@@ -75,4 +89,18 @@ public class Wallet {
         return "No tienes saldo suficiente :(";
     }
 
+    public String compararCuenta(Wallet otraWallet) {
+        if(saldo == otraWallet.getSaldo()){
+            return "Las cuentas tienen en mismo saldo";
+        }
+        if(saldo > otraWallet.getSaldo()){
+            return "La primera cuenta es mayor";
+        }
+        return "La segunda cuenta es mayor";
+    }
+    public void transferirDinero(Wallet otraWallet,int vtransferencia){
+        this.takeMoney(vtransferencia);
+        otraWallet.saveMoney(vtransferencia);
+        this.takeMoney((int) (vtransferencia*TAZA_TRANSFERENCIA));
+    }
 }
