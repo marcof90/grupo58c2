@@ -13,4 +13,7 @@ public class Client extends User {
         return wallet;
     }
     
+    public String toString(){
+        return "soy un cliente";
+    }
 }
