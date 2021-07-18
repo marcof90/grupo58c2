@@ -1,7 +1,7 @@
 package views;
 import model.Wallet;
 public class Vista {
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         Wallet wallet1 = new Wallet(); // Instanciando
         System.out.println(wallet1.getBalance());
         System.out.println(wallet1.saveMoney(200000));
