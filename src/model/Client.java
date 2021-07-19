@@ -7,7 +7,6 @@ public class Client extends User { // Hereda las propiedades de User
         wallet = new Wallet();
         setName(newName);
     }
-
     public Wallet getWallet() {
         return wallet;
     }
