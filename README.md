@@ -1,6 +1,6 @@
 ## Java Wallet App
 
-This Wallet app is a part of my Java lessons on MisiónTIC2022.
+This is our collaborative Wallet made by students in MisiónTIC 20222.
 
 ## Folder Structure
 
