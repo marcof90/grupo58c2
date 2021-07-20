@@ -15,7 +15,7 @@ public class Wallet {
      */
 
     private ArrayList<Transaction> movimientos;
-
+    //Pruebas
     public Wallet() {
         super();
         saldo = 0;
