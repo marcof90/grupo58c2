@@ -11,13 +11,19 @@ public class VistaUser {
         // System.out.println(response);
         // System.out.println(response1);
         System.out.println(customer1.getWallet().saveMoney(15000));
-        System.out.println(customer1.getWallet().breakLimit());
-        System.out.println(customer1.getWallet().saveMoney(15000));
-        System.out.println(customer1.getWallet().takeMoney(20000));
+        //System.out.println(customer1.getWallet().breakLimit());
+        System.out.println(customer1.getWallet().saveMoney(200000));
+        System.out.println(customer1.getWallet().takeMoney(200000));
         // System.out.println(customer1.getWallet().getSaldo());
         // System.out.println(customer2.getWallet().getSaldo());
         // String response2 = customer1.getWallet().compararCuenta(customer2.getWallet());
         // System.out.println(response2);
+
+        //unidad 1
+        System.out.println(customer1.getWallet().transferirDinero(13000, customer2.getWallet()));
+        System.out.println(customer2.getWallet().getSaldo());
+
+
         customer1.getWallet().displayMovimientos();
         System.out.println(customer1.getWallet());
         System.out.println( customer1.toString());

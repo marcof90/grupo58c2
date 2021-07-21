@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 
+
 public class Wallet {
 
     public static final int CAPACIDAD_MAXIMA = 1000000;
@@ -9,6 +10,9 @@ public class Wallet {
     private int saldo;
     private boolean tieneLimite;
     private int meta;
+
+    public static final int TOPE_TRANSACCION = 200000;
+    public static final double TAZA_TRANSFERENCIA = 0.02;
 
     /**
      * Listas
@@ -59,6 +63,11 @@ public class Wallet {
         if (saldo + value > CAPACIDAD_MAXIMA && tieneLimite) {
             return "No se puede superar el limite " + CAPACIDAD_MAXIMA;
         }
+
+        if (tieneLimite  && value > TOPE_TRANSACCION){
+            return "El valor a ingresar debe ser menor a $200000";
+        }
+        
         saldo += value; // saldo = saldo + value
         Transaction ingreso = new Transaction(value, "hoy", 1, "Ingreso de dinero");
         movimientos.add(ingreso);
@@ -67,14 +76,22 @@ public class Wallet {
     }
     
     public String takeMoney(int value){
-        if(saldo >= value){
-            saldo -= value;
-            Transaction retiro = new Transaction(value, "hoy", 2, "Retiro de dinero");
-            movimientos.add(retiro);
-            return "Transacción exitosa, nuevo saldo " + saldo;
+                
+        if(saldo < value ) {
+            return "Saldo insuficiente";
         }
-        return "Saldo insuficiente";
-    }
+        if(tieneLimite && (value > TOPE_TRANSACCION)){
+            return "Supera el tope de transaccion " + TOPE_TRANSACCION;
+        }
+        //NO mirar esto: ((!(value < TOPE_TRANSACCION) && !tieneLimite) || !((!(value < TOPE_TRANSACCION) && tieneLimite) ))
+            
+            
+        this.saldo -= value;
+        Transaction retiro = new Transaction(value, "hoy", 2, "Retiro de dinero");
+        movimientos.add(retiro);
+        return "Transacción exitosa, nuevo saldo " + saldo;
+        }
+    
 
     public String breakLimit(){
         if(!tieneLimite){
@@ -98,6 +115,20 @@ public class Wallet {
             return "La primera cuenta es mayor";
         }
         return "La segunda cuenta es mayor";
+    }
+
+    public String transferirDinero(int value, Wallet otraWallet) {
+
+        int saldoTaza= (int)(saldo-(TAZA_TRANSFERENCIA*value));
+        if(saldoTaza < value ) {
+            return "Saldo insuficiente";
+        }
+        else{
+            saldo= saldoTaza-value;
+            otraWallet.saveMoney(value);
+        
+            return "Transferencia exitosa, el nuevo saldo es " + saldo;
+        }
     }
 
     public void displayMovimientos(){
