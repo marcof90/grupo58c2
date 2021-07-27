@@ -1,6 +1,7 @@
 package views;
 
 import model.Client;
+import model.Wallet;
 
 public class VistaUser {
     public static void main(String[] args) {
@@ -19,8 +20,8 @@ public class VistaUser {
         // String response2 = customer1.getWallet().compararCuenta(customer2.getWallet());
         // System.out.println(response2);
         customer1.getWallet().displayMovimientos();
-        System.out.println(customer1.getWallet());
-        System.out.println( customer1.toString());
-
+        System.out.println(customer1.getWallet().getSaldo());
+        
+        System.out.println( Wallet.CAPACIDAD_MAXIMA  );
     }
 }

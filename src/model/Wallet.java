@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Wallet {
 
@@ -21,7 +22,7 @@ public class Wallet {
         saldo = 0;
         tieneLimite = true;
         meta = 0;
-        movimientos = new ArrayList<>();
+        movimientos = new ArrayList<>();        
     }
 
     public int getSaldo(){
@@ -55,9 +56,10 @@ public class Wallet {
         this.tieneLimite = newTieneLimite;
     }
 
-    public String saveMoney(int value){
+    public String saveMoney(int value) throws Exception{
         if (saldo + value > CAPACIDAD_MAXIMA && tieneLimite) {
-            return "No se puede superar el limite " + CAPACIDAD_MAXIMA;
+            throw new Exception("No se puede superar el limite " + CAPACIDAD_MAXIMA);
+            //return "No se puede superar el limite " + CAPACIDAD_MAXIMA;
         }
         saldo += value; // saldo = saldo + value
         Transaction ingreso = new Transaction(value, "hoy", 1, "Ingreso de dinero");
