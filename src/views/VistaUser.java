@@ -11,9 +11,9 @@ public class VistaUser {
         String response1 = customer2.getNombre();
         // System.out.println(response);
         // System.out.println(response1);
-        System.out.println(customer1.getWallet().saveMoney(15000));
-        System.out.println(customer1.getWallet().breakLimit());
-        System.out.println(customer1.getWallet().saveMoney(15000));
+        // System.out.println(customer1.getWallet().saveMoney(15000));
+        // System.out.println(customer1.getWallet().breakLimit());
+        // System.out.println(customer1.getWallet().saveMoney(15000));
         System.out.println(customer1.getWallet().takeMoney(20000));
         // System.out.println(customer1.getWallet().getSaldo());
         // System.out.println(customer2.getWallet().getSaldo());
