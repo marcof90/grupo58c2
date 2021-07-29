@@ -1,5 +1,6 @@
 package model;
 
+
 public class Client extends User {
     private Wallet wallet;
     
