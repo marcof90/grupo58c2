@@ -3,12 +3,14 @@ package views;
 import javax.swing.JFrame;
 
 import controller.Controlador;
+import model.Client;
 
 import java.awt.BorderLayout;
 
 public class Interfaz extends JFrame{
 
-    private PanelOpciones panelOpciones;   
+    private PanelOpciones panelOpciones;  
+    private PanelClientes panelClientes; 
     
     private Controlador controlador;
 
@@ -22,8 +24,9 @@ public class Interfaz extends JFrame{
         controlador = new Controlador();
 
         panelOpciones = new PanelOpciones(this);
-
+        panelClientes = new PanelClientes(this);
         add(panelOpciones, BorderLayout.SOUTH);
+        add(panelClientes, BorderLayout.CENTER);
     }
     
     public void addClient(String nombre) {
@@ -32,6 +35,10 @@ public class Interfaz extends JFrame{
 
     public String listarClientes() {
         return controlador.listarClientes();
+    }
+
+    public void updateList(){
+        panelClientes.updateList(controlador.getClientsNames());
     }
 
     public static void main(String[] args) {

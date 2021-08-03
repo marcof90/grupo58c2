@@ -77,6 +77,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
             // System.out.println("Vas a recargar");
         }else if(e.getActionCommand().equals(BTN_CREAR)){
             addClient();
+            interfaz.updateList();
         }else if(e.getActionCommand().equals(BTN_LISTAR)){
             listarClientes();
         }

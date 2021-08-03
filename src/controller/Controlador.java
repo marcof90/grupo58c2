@@ -17,6 +17,14 @@ public class Controlador {
         return clientes;
     }
 
+    public String[] getClientsNames() {
+        String[] names = new String[clientes.size()];
+        for (int i = 0; i < clientes.size(); i++) {
+            names[i] = clientes.get(i).getNombre();
+        }
+        return names;
+    }
+
     public void addClient(String nombre) {
         Client cliente = new Client(nombre);
         clientes.add(cliente);
