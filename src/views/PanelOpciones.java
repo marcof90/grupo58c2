@@ -13,7 +13,7 @@ public class PanelOpciones extends JPanel implements ActionListener{
 
     public final static String BTN_SALDO = "Ver Saldo";
     public final static String BTN_CARGAR = "Cargar Saldo";
-    public final static String BTN_CREAR = "Crear";
+    public final static String BTN_CREAR = "Crear Cliente";
     public final static String BTN_LISTAR = "Listar clientes";
 
     //Crear relaciones o atributos
@@ -83,7 +83,8 @@ public class PanelOpciones extends JPanel implements ActionListener{
             //System.out.println("Vas a recargar");
         }
         else if(e.getActionCommand().equals(BTN_CREAR)){
-            addClient();                        
+            addClient();
+            interfaz.updateList();                        
         }
         else if(e.getActionCommand().equals(BTN_LISTAR)){
             listarClientes();
