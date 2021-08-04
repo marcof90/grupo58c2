@@ -15,6 +15,6 @@ public class Client extends User {
     }
     
     public String toString(){
-        return "soy un cliente";
+        return "Nombre: "+getNombre()+"   Saldo: "+ wallet.getSaldo();
     }
 }

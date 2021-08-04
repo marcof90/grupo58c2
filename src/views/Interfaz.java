@@ -38,7 +38,7 @@ public class Interfaz extends JFrame{
     }
 
     public void updateList(){
-        panelClientes.updateList(controlador.getClientsNames());
+        panelClientes.updateList(controlador.getClientsData());
     }
 
     public static void main(String[] args) {
