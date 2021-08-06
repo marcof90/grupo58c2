@@ -27,6 +27,7 @@ public class Interfaz extends JFrame{
         panelClientes = new PanelClientes(this);
         add(panelOpciones, BorderLayout.SOUTH);
         add(panelClientes, BorderLayout.CENTER);
+        updateList();
     }
     
     public void addClient(String nombre) {
