@@ -57,6 +57,7 @@ public class PanelOpciones extends JPanel implements ActionListener {
         String nombre = JOptionPane.showInputDialog(interfaz, "Digita el nombre del cliente");
         if (nombre!=null && !nombre.equals("")) {            
             interfaz.addClient(nombre);
+            interfaz.updateList();
         }else if(nombre != null){
             JOptionPane.showMessageDialog(interfaz, "Revisa los datos");
         }
