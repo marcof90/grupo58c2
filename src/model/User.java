@@ -2,6 +2,7 @@ package model;
 
 public class User {
     private int estado;
+    private int id;
     private String nombre;
 
     public int getEstado() {
@@ -10,6 +11,14 @@ public class User {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setEstado(int estado) {

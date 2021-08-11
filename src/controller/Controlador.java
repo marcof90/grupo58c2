@@ -29,7 +29,6 @@ public class Controlador {
                 fillUsersData(servicioDB.getUsersDB());
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -38,10 +37,10 @@ public class Controlador {
         try {
             while (rs.next()) {
                 Client cliente = new Client(rs.getString("name"));
+                cliente.setId(rs.getInt("id"));
                 clientes.add(cliente);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -66,5 +65,17 @@ public class Controlador {
             listado += "Nombre: "+client.getNombre()+"\n";
         }
         return listado;
+    }
+
+    public void getWalletUser(int id) {
+        ResultSet rs = servicioDB.getWalletUser(clientes.get(id).getId());
+        try {
+            while (rs.next()) {
+                clientes.get(id).getWallet().setId(rs.getInt("id"));
+                clientes.get(id).getWallet().setSaldo(rs.getInt("saldo"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
