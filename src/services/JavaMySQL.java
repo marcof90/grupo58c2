@@ -67,6 +67,12 @@ public class JavaMySQL {
         executeInsertStatement(sql);
     }
 
+    public void insertTransaction(int id, int type, int value) {
+        String sql = "INSERT INTO `transactions`(`saldo`, `transaction_type`, `wallet_id`) "+
+        "VALUES ("+value+","+type+","+id+")";
+        executeInsertStatement(sql);
+    }
+
     public ResultSet getUsersDB() {
         String sql = "SELECT * FROM users";
         return executeQueryStatement(sql);
@@ -74,6 +80,11 @@ public class JavaMySQL {
 
     public ResultSet getWalletUser(int id) {
         String sql = "SELECT * FROM wallets WHERE user_id = "+ id;
+        return executeQueryStatement(sql);
+    }
+
+    public ResultSet getWalletTransactions(int id) {
+        String sql = "SELECT * FROM transactions WHERE wallet_id = "+id;
         return executeQueryStatement(sql);
     }
 

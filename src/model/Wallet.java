@@ -37,6 +37,14 @@ public class Wallet {
         return tieneLimite;
     }
 
+    public ArrayList<Transaction> getMovimientos() {
+        return movimientos;
+    }
+
+    public void setMovimientos(ArrayList<Transaction> movimientos) {
+        this.movimientos = movimientos;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

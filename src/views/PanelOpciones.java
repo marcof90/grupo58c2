@@ -49,8 +49,8 @@ public class PanelOpciones extends JPanel implements ActionListener {
         //agregar las relaciones o atributos
         add(btnCrear);
         add(btnListar);
-        add(btnSaldo);
-        add(btnCargar);
+        // add(btnSaldo);
+        // add(btnCargar);
     }
 
     public void addClient() {
