@@ -73,6 +73,11 @@ public class JavaMySQL {
         executeInsertStatement(sql);
     }
 
+    public void updateSaldoWallet(int saldo, int id) {
+        String sql = "UPDATE `wallets` SET saldo = "+saldo+" WHERE id = "+id;
+        executeInsertStatement(sql);
+    }
+
     public ResultSet getUsersDB() {
         String sql = "SELECT * FROM users";
         return executeQueryStatement(sql);

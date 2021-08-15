@@ -14,11 +14,13 @@ import model.Wallet;
 import java.awt.GridLayout;
 
 public class PanelWallet extends JPanel implements ActionListener {
-    
+
     private JLabel lblSaldo;
     private JLabel lblId;
     private JLabel lblEstado;
     private JButton btnCargar;
+
+    private int activeWallet;
 
     private Interfaz interfaz;
 
@@ -29,7 +31,9 @@ public class PanelWallet extends JPanel implements ActionListener {
         JPanel panelAux = new JPanel();
         panelAux.setLayout(new GridLayout(4, 1));
         panelAux.setBorder(new EmptyBorder(20, 20, 10, 10));
+
         interfaz = i;
+        activeWallet = -1;
 
         lblSaldo = new JLabel("Saldo:");
         lblEstado = new JLabel("Estado:");
@@ -44,19 +48,32 @@ public class PanelWallet extends JPanel implements ActionListener {
         add(panelAux);
     }
 
+    public int getActiveWallet() {
+        return activeWallet;
+    }
+
+    public void setActiveWallet(int activeWallet) {
+        this.activeWallet = activeWallet;
+    }
+
     public void updateWallet(Wallet w) {
-        lblSaldo.setText("Saldo: "+ w.getSaldo());
-        lblEstado.setText("Estado: "+ w.getTieneLimite());
-        lblId.setText("ID: "+w.getId());
+        lblSaldo.setText("Saldo: " + w.getSaldo());
+        lblEstado.setText("Estado: " + w.getTieneLimite());
+        lblId.setText("ID: " + w.getId());
+        setActiveWallet(w.getId());
     }
 
     public void cargarWallet() {
-        String valor = JOptionPane.showInputDialog(interfaz, "Digite la cantidad a guardar");
-        try {            
-            int value = Integer.parseInt(valor);
-            interfaz.insertTransaction(1, value);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (getActiveWallet() == -1) {
+            JOptionPane.showMessageDialog(interfaz, "Primero debes escoger un usuario de la lista");
+        } else {
+            String valor = JOptionPane.showInputDialog(interfaz, "Digite la cantidad a guardar");
+            try {
+                int value = Integer.parseInt(valor);
+                interfaz.insertTransaction(1, value);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

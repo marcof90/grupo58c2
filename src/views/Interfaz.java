@@ -20,7 +20,7 @@ public class Interfaz extends JFrame{
 
     public Interfaz() {
         super();
-        setSize(600, 450);
+        setSize(650, 450);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Wallet");
         setLayout(new BorderLayout());
@@ -60,7 +60,7 @@ public class Interfaz extends JFrame{
     }
 
     public void fillTransactionsData(int id) {
-        controlador.fillTransactionsData(id);
+        controlador.fillTransactionsData(id, panelWallet.getActiveWallet());
         updateTranstactionsList(id);
     }
 
@@ -68,14 +68,20 @@ public class Interfaz extends JFrame{
         panelTransactions.updateTranstactions(controlador.getDataTransactions(id));
     }
 
+    public void updateSaldoWallet(int value) {
+        controlador.updateSaldoWallet(controlador.getClientes().get(panelClientes.getActiveUser()).getWallet().getSaldo()+value, 
+                                    controlador.getClientes().get(panelClientes.getActiveUser()).getWallet().getId());
+    }
+
     public void insertTransaction(int type, int value) {
         if (panelClientes.getActiveUser()==-1) {
-            System.out.println(panelClientes.getActiveUser());
             JOptionPane.showMessageDialog(this, "Debes seleccionar un cliente primero");
         }else{
             int id = controlador.getClientes().get(panelClientes.getActiveUser()).getWallet().getId();
             controlador.insertTransaction(id, type, value);
-            updateTranstactionsList(id-1);
+            updateSaldoWallet(value);
+            // updateTranstactionsList(panelClientes.getActiveUser());
+            getWalletUser(panelClientes.getActiveUser());
         }
     }
 

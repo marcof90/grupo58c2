@@ -46,15 +46,15 @@ public class Controlador {
         }
     }
     
-    public void fillTransactionsData(int id) {
-        ResultSet rs = servicioDB.getWalletTransactions(id);
+    public void fillTransactionsData(int id_user, int id_wallet) {
+        ResultSet rs = servicioDB.getWalletTransactions(id_wallet);
         // clientes.get(id).getWallet().setMovimientos(new ArrayList<>());
-        clientes.get(id).getWallet().getMovimientos().clear();
+        clientes.get(id_user).getWallet().getMovimientos().clear();
         try {
             while (rs.next()) {
                 Transaction t = new Transaction(rs.getInt("saldo"),"", 
                 rs.getInt("transaction_type"),"");
-                clientes.get(id).getWallet().getMovimientos().add(t);
+                clientes.get(id_user).getWallet().getMovimientos().add(t);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,6 +85,10 @@ public class Controlador {
 
     public void insertTransaction(int id, int type, int value) {
         servicioDB.insertTransaction(id, type, value);
+    }
+
+    public void updateSaldoWallet(int saldo, int id) {
+        servicioDB.updateSaldoWallet(saldo, id);
     }
 
     public String listarClientes() {
